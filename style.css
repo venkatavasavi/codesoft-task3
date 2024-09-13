@@ -1,0 +1,111 @@
+[6:55 PM, 9/12/2024] ~Vasavi~: * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.calculator {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+.display {
+    width: 100%;
+    height: 60px;
+    background-color: #222;
+    color: #fff;
+    font-size: 2em;
+    text-align: right;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+
+.btn {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 20px;
+    font-size: 1.5em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+.operator {
+    background-color: #f09a36;
+}
+
+.operator:hover {
+    background-color: #d98626;
+}
+
+.equal {
+    background-color: #3a86ff;
+    grid-column: span 2;
+}
+
+.equal:hover {
+    background-color: #2c6bda;
+}
+
+.clear {
+    background-color: #ff5e57;
+}
+
+.clear:hover {
+    background-color: #d94e47;
+}
+[6:56 PM, 9/12/2024] ~Vasavi~: calculator css code
+[6:56 PM, 9/12/2024] ~Vasavi~: const display = document.getElementById('display');
+const buttons = document.querySelectorAll('.btn');
+
+let currentInput = '';
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        const buttonValue = button.textContent;
+
+        if (button.classList.contains('clear')) {
+            currentInput = '';
+            display.value = '';
+        }
+       
+        else if (button.classList.contains('equal')) {
+            try {
+                currentInput = eval(currentInput); 
+                display.value = currentInput;
+            } catch (error) {
+                display.value = 'Error';  
+            }
+        }
+        
+        else {
+            currentInput += buttonValue;
+            display.value = currentInput;  
+        }
+    });
+});
